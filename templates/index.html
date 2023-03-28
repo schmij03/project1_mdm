@@ -20,6 +20,7 @@
       <form method="post" enctype="multipart/form-data">
         <label for="image">Select image to upload:</label>
         <input class="form-control form-control-lg" type="file" name="image" id="image"><br><br>
+        <img id="uploaded-image" src="#" alt="" style="display: none; max-height: 300px;">
         <div class="d-flex justify-content-between">
           <input class="btn btn-outline-primary" type="submit" value="Submit">
           <button class="btn btn-outline-secondary" type="button" onclick="location.reload();">Reset</button>
@@ -27,7 +28,7 @@
       </form>
       <p></p>
     </div>
-    <div id="result"></div>
+       <div id="result"></div>
     <div id="error" style="display: none; color: red;">
       Error: Failed to classify the image. Please try to select a new image.
     </div>
