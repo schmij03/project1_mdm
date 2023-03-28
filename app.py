@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import onnxruntime
 import numpy as np
 from PIL import Image
-import base64
 import urllib.request
 
 app = Flask(__name__)
