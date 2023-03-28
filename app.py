@@ -7,7 +7,7 @@ import urllib.request
 
 app = Flask(__name__)
 
-session = onnxruntime.InferenceSession('vgg19.onnx')
+session = onnxruntime.InferenceSession('vgg19-7.onnx')
 
 @app.route('/')
 def index():
