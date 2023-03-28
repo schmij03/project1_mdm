@@ -3,10 +3,14 @@ import onnxruntime
 import numpy as np
 from PIL import Image
 import base64
+import urllib.request
 
 app = Flask(__name__)
 
-session = onnxruntime.InferenceSession('vgg19-7.onnx')
+# Load the model from a URL
+model_url = 'https://github.com/onnx/models/blob/main/vision/classification/vgg/model/vgg19-7.onnx'
+model_bytes = urllib.request.urlopen(model_url).read()
+session = onnxruntime.InferenceSession(model_bytes)
 
 @app.route('/')
 def index():
@@ -23,12 +27,11 @@ def classify():
     output_name = session.get_outputs()[0].name
     pred = session.run([output_name], {input_name: img.astype(np.float32)})[0]
     class_idx = np.argmax(pred)
-    with open('imagenet_classes.txt') as f:
+    with urllib.request.urlopen('https://example.com/imagenet_classes.txt') as f:
         classes = f.readlines()
         class_name = classes[class_idx].split(',')[1].strip()
         class_number = classes[class_idx].split(',')[0]
     result = f'Predicted class: {class_name} '
-
 
     # Create a new HTML element with the predicted result and uploaded image
     html = f'<div class="alert alert-success" role="alert"> \
