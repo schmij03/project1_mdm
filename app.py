@@ -27,8 +27,7 @@ def classify():
     with open ('imagenet_classes.txt') as f:
         classes = f.readlines()
         class_name = classes[class_idx].split(',')[1].strip()
-        class_number = classes[class_idx].split(',')[0]
-    result = f'Predicted class: {class_name} '
+        result = f'Predicted class: {class_name} '
 
     # Create a new HTML element with the predicted result and uploaded image
     html = f'<div class="alert alert-success" role="alert"> \
